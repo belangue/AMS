@@ -9,7 +9,7 @@ def login():
         email = request.form['email']
         password = request.form['password']
         # Handle login logic here
-        return redirect(url_for('dashboard'))  # Redirect to a dashboard or home page
+        return redirect(url_for('attendance'))  # Redirect to a dashboard or home page
     return render_template('login.html')
 
 @auth.route('/register', methods=['GET', 'POST'])
