@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Welcome, {{ teacher.name }}</h2>
+<p>Subject: {{ teacher.subject }}</p>
+
+<h3>Select a Class to Mark Attendance</h3>
+<div class="list-group">
+    {% for class in classes %}
+    <a href="{{ url_for('mark_attendance', class_name=class[0]) }}" class="list-group-item list-group-item-action">
+        Class {{ class[0] }}
+    </a>
+    {% endfor %}
+</div>
+{% endblock %}

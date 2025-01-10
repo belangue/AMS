@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Attendance</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center">Student Attendance</h2>
+        <form method="POST" action="/update_attendance">
+            <table class="table table-bordered table-striped mt-4">
+                <thead class="table-dark">
+                    <tr>
+                        <th>#</th>
+                        <th>Student Name</th>
+                        <th>Period 1</th>
+                        <th>Period 2</th>
+                        <th>Period 3</th>
+                        <th>Period 4</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Example rows, replace with server-side rendered data -->
+                    {% for student in students %}
+                    <tr>
+                        <td>{{ loop.index }}</td>
+                        <td>{{ student.name }}</td>
+                        <td>
+                            <select name="attendance[{{ student.id }}][period1]" class="form-select">
+                                <option value="Present" {% if student.attendance.period1 == 'Present' %}selected{% endif %}>Present</option>
+                                <option value="Absent" {% if student.attendance.period1 == 'Absent' %}selected{% endif %}>Absent</option>
+                                <option value="Late" {% if student.attendance.period1 == 'Late' %}selected{% endif %}>Late</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select name="attendance[{{ student.id }}][period2]" class="form-select">
+                                <option value="Present" {% if student.attendance.period2 == 'Present' %}selected{% endif %}>Present</option>
+                                <option value="Absent" {% if student.attendance.period2 == 'Absent' %}selected{% endif %}>Absent</option>
+                                <option value="Late" {% if student.attendance.period2 == 'Late' %}selected{% endif %}>Late</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select name="attendance[{{ student.id }}][period3]" class="form-select">
+                                <option value="Present" {% if student.attendance.period3 == 'Present' %}selected{% endif %}>Present</option>
+                                <option value="Absent" {% if student.attendance.period3 == 'Absent' %}selected{% endif %}>Absent</option>
+                                <option value="Late" {% if student.attendance.period3 == 'Late' %}selected{% endif %}>Late</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select name="attendance[{{ student.id }}][period4]" class="form-select">
+                                <option value="Present" {% if student.attendance.period4 == 'Present' %}selected{% endif %}>Present</option>
+                                <option value="Absent" {% if student.attendance.period4 == 'Absent' %}selected{% endif %}>Absent</option>
+                                <option value="Late" {% if student.attendance.period4 == 'Late' %}selected{% endif %}>Late</option>
+                            </select>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary">Update Attendance</button>
+            </div>
+        </form>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

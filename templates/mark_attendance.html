@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Mark Attendance - Class {{ class_name }}</h2>
+<form method="POST">
+    <div class="mb-3">
+        <label for="hour" class="form-label">Hour</label>
+        <select class="form-select" id="hour" name="hour" required>
+            {% for i in range(1, 9) %}
+            <option value="{{ i }}">Hour {{ i }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Student Name</th>
+                <th>Attendance</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for student in students %}
+            <tr>
+                <td>{{ student.name }}</td>
+                <td>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="student_{{ student.id }}" 
+                               id="present_{{ student.id }}" value="present" checked>
+                        <label class="form-check-label" for="present_{{ student.id }}">Present</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="student_{{ student.id }}" 
+                               id="absent_{{ student.id }}" value="absent">
+                        <label class="form-check-label" for="absent_{{ student.id }}">Absent</label>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <button type="submit" class="btn btn-primary">Submit Attendance</button>
+</form>
+{% endblock %}
